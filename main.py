@@ -1,17 +1,10 @@
-import random
-import datetime
-
-from quotes import quotes
+from kivymd.app import MDApp
+from kivymd.uix.label import MDLabel
 
 
-def generate_quote():
-    last_day = None  # Variable global
-    index_quote = -1  # Variable global
+class MainApp(MDApp):
+    def build(self):
+        return MDLabel(text="Hello, World", halign="center")
 
-    if last_day != datetime.datetime.now().day:
-        last_index = index_quote
-        while index_quote == last_index:
-            index_quote = random.randint(0, len(quotes) - 1)
-        last_day = datetime.datetime.now().day
 
-    print(quotes[index_quote])
+MainApp().run()
