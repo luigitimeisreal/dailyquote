@@ -14,4 +14,4 @@ def generate_quote():
             index_quote = random.randint(0, len(quotes) - 1)
         last_day = datetime.datetime.now().day
 
-    print(quotes[index_quote])
+    return(quotes[index_quote])

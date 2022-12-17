@@ -1,0 +1,50 @@
+#equivalent as from module import function as x (#: is essencial)
+#:import frase generate_quote.generate_quote
+MDScreen:
+
+    MDBottomNavigation:
+        #panel_color: "#eeeaea"
+        selected_color_background: "green"
+        text_color_active: "lightgrey"
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Quote'
+            icon: "greenhouse"
+            badge_icon: "numeric-10"
+            
+            MDCard:
+		        size_hint: .7, .4
+		        focus_behavior: True
+		        pos_hint: {"center_x": .5, "center_y": .5}
+		        md_bg_color: "darkgrey"
+		        unfocus_color: "darkgrey"
+		        focus_color: "grey"
+		        #elevations kinda bugged while swiping between tabs :/
+		        elevation: 6
+		        ripple_behavior: True
+		        
+		        MDLabel:
+		        	text: frase()
+		        	halign: "center"
+		        	valign: "middle"
+		        	font_style: "H3"
+		        	
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'More'
+            icon: 'tree-outline'
+            badge_icon: "numeric-5"
+
+            MDLabel:
+                text: 'Second tab.'
+                halign: 'center'
+
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Settings'
+            icon: 'wrench-outline'
+
+            MDLabel:
+                text: 'Third tab.'
+                halign: 'center'
