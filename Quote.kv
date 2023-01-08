@@ -1,6 +1,6 @@
 #equivalent as from module import function as x (#: is essencial)
-#:import frase generate_quote.generate_quote
-MDScreen:
+#:import phrase generate_quote.generate_quote
+<Main>:
 
     MDBottomNavigation:
         #panel_color: "#eeeaea"
@@ -14,22 +14,29 @@ MDScreen:
             badge_icon: "numeric-10"
             
             MDCard:
-		        size_hint: .7, .4
-		        focus_behavior: True
-		        pos_hint: {"center_x": .5, "center_y": .5}
-		        md_bg_color: "darkgrey"
-		        unfocus_color: "darkgrey"
-		        focus_color: "grey"
-		        #elevations kinda bugged while swiping between tabs :/
-		        elevation: 6
-		        ripple_behavior: True
-		        
-		        MDLabel:
-		        	text: frase()
-		        	halign: "center"
-		        	valign: "middle"
-		        	font_style: "H3"
-		        	
+                size_hint: .7, .4
+                focus_behavior: True
+                pos_hint: {"center_x": .5, "center_y": .5}
+                md_bg_color: "darkgrey"
+                unfocus_color: "darkgrey"
+                focus_color: "grey"
+                #elevation's kinda bugged while swiping between tabs :(
+                #elevation: 6
+                ripple_behavior: True
+                
+                MDLabel:
+                    text: phrase()
+                    halign: "center"
+                    valign: "middle"
+                    font_style: "H3"
+            
+            MDLabel:
+                text: root.current_time #don't forget root
+                size_hint: .5,.2
+                font_style:"H2"
+                pos_hint: {"center_x":.5,"center_y":.8}
+                halign:"center"
+    		        	
         MDBottomNavigationItem:
             name: 'screen 2'
             text: 'More'
