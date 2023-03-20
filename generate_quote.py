@@ -27,4 +27,4 @@ def generate_quote():
             last_day_file.write(str(last_day))
     return quotes[index]
 if __name__ == "__main__":
-    generate_quote()
+    print(generate_quote())
