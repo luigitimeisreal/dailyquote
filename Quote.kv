@@ -1,57 +1,127 @@
 #equivalent as from module import function as x (#: is essencial)
 #:import phrase generate_quote.generate_quote
+#:import Snackbar kivymd.uix.snackbar.Snackbar
 <Main>:
+    MDScreen:
+        name: "A"
+        MDBottomNavigation:
+            panel_color: "#d1b815"
+            selected_color_background: "white"
+            text_color_active: "grey"
+            font_name: "font_1.ttf"
+            text_color_normal: "#4a4107"
+            MDBottomNavigationItem:
+                name: "1"
+                text: 'Quote'
+                icon: "coffee"
+                badge_icon: ""
 
-    MDBottomNavigation:
-        #panel_color: "#eeeaea"
-        selected_color_background: "green"
-        text_color_active: "lightgrey"
+                MDHeroFrom:
+                    id: hero_from
+                    tag: "hero"
+                    size_hint:.8,.8
+                    pos_hint: {"center_x": .5, "center_y": .4}
+                    Image:
+                        source:"cup.png"
+                        size_hint: None, None
+                        size: hero_from.size
 
-        MDBottomNavigationItem:
-            name: 'screen 1'
-            text: 'Quote'
-            icon: "greenhouse"
-            badge_icon: "numeric-10"
-            
-            MDCard:
-                size_hint: .7, .4
-                focus_behavior: True
-                pos_hint: {"center_x": .5, "center_y": .5}
-                md_bg_color: "darkgrey"
-                unfocus_color: "darkgrey"
-                focus_color: "grey"
-                #elevation's kinda bugged while swiping between tabs :(
-                #elevation: 6
-                ripple_behavior: True
+                MDCard:
+                    size_hint: .3, .2
+                    focus_behavior: True
+                    pos_hint: {"center_x": .49, "center_y": .37}
+                    md_bg_color: "#FFFFFF00"
+                    unfocus_color: "#FFFFFF00"
+                    focus_color: "#FFFFFF00"
+                    ripple_behavior: True
+                    on_release:
+                        root.current_heroes = ["hero"]
+                        root.current = "B"
+                    MDLabel:
+                        font_style: "H5"
+                        text: phrase()
+                        halign: "center"
+                        valign: "middle"
+                        theme_text_color: "Custom"
+                        text_color: "black"
+                        font_name: "font_1.ttf"
                 
                 MDLabel:
-                    text: phrase()
-                    halign: "center"
-                    valign: "middle"
-                    font_style: "H3"
+                    text: root.current_time #don't forget root
+                    font_style:"H3"
+                    pos_hint: {"center_x":.5,"center_y":.85}
+                    halign:"center"
+                    font_name: "font_2.otf"
+                MDIconButton:
+                    icon: "feather"
+                    text: 'save'
+                    pos_hint:{"center_x":.9,"center_y":.85}
+                    on_release:
+                        app.add_new_widget()
+                        Snackbar(text="Saved Quote :)",
+                        duration=2,
+                        snackbar_animation_dir="Bottom",
+                        snackbar_x="10dp",
+                        snackbar_y="85dp",
+                        size_hint_x=(root.width - (dp(10) * 2)) /root.width,
+                        ).open()
+                        
+                                
+            MDBottomNavigationItem:
+                text: 'Saved'
+                icon: 'star-face'
+                name: "2"
+                
+                MDScrollView:
+                    MDGridLayout:
+                        id: box
+                        cols: 1
+                        adaptive_height: True
+                        MDLabel:
+                            text: " Your Favourite Quotes"
+                            halign: "center"
+                            valign: "middle"
+
             
-            MDLabel:
-                text: root.current_time #don't forget root
-                size_hint: .5,.2
-                font_style:"H2"
-                pos_hint: {"center_x":.5,"center_y":.8}
-                halign:"center"
-    		        	
-        MDBottomNavigationItem:
-            name: 'screen 2'
-            text: 'More'
-            icon: 'tree-outline'
-            badge_icon: "numeric-5"
+            MDBottomNavigationItem:
+                text: 'Settings'
+                icon: 'nut'
+                name: "3"
+                FitImage:
+                    source: 'cuenca1.jpg'
+                MDCard:
+                    md_bg_color: "#FF9B26AF"
+                    unfocus_color: "#FF9B26AF"
+                    focus_color: "#FFDBB0AF"
+                    size_hint: .7, .4
+                    focus_behavior: True
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    MDLabel:
+                        text: 'Texto de ejemplo xd'
+                        halign: 'center'
+    MDScreen:
+        name:"B"
+        hero_to: hero_to
+        FitImage:
+            source: "fondo1.jpg"
+        MDHeroTo:
+            id: hero_to
+            tag: "hero"
+            size_hint: .2, .2
+            pos_hint: {"center_x": .2, "center_y": .2}
+            
+        MDTextButton:
+            text: "Volver a primera pantalla"
+            pos_hint: {"center_x": .5,"center_y":.8}
+            y: "36dp"
+            on_release:
+                root.current_heroes = ["hero"]
+                root.current = "A"
 
-            MDLabel:
-                text: 'Second tab.'
-                halign: 'center'
-
-        MDBottomNavigationItem:
-            name: 'screen 3'
-            text: 'Settings'
-            icon: 'wrench-outline'
-
-            MDLabel:
-                text: 'Third tab.'
-                halign: 'center'
+<SavedQuoteContent>
+    adaptive_height: True
+    TwoLineIconListItem:
+        text: "(050)-123-45-67"
+        secondary_text: "Mobile"
+        IconLeftWidget:
+            icon: 'phone'

@@ -7,8 +7,16 @@ from kivy.clock import Clock
 from kivy.properties import StringProperty
 import time
 from kivymd.uix.screen import MDScreen
+from kivymd.uix.screenmanager import MDScreenManager
 
-class Main(MDScreen):
+from functools import partial
+from kivymd.uix.expansionpanel import MDExpansionPanel, MDExpansionPanelThreeLine
+import os
+from kivymd.uix.boxlayout import MDBoxLayout
+class SavedQuoteContent(MDBoxLayout):
+    '''Custom content'''
+
+class Main(MDScreenManager):
     #properties can get updated
     current_time = StringProperty("")
     def __init__(self):
@@ -27,4 +35,14 @@ class QuoteApp(MDApp):
         self.theme_cls.primary_palette = "Brown"
         self.theme_cls.primary_hue = "200"
         return Main()
+    def add_new_widget(self):
+        self.root.ids.box.add_widget(
+            MDExpansionPanel(
+                icon= "star",
+                content=SavedQuoteContent(),
+                panel_cls=MDExpansionPanelThreeLine(
+                    text="Text",
+                    secondary_text="Secondary text",
+                    tertiary_text="Tertiary text",
+                    )))
 QuoteApp().run()

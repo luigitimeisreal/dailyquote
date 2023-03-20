@@ -25,7 +25,6 @@ def generate_quote():
             index_file.write(str(index))
         with open('last_day.txt', 'w') as last_day_file:
             last_day_file.write(str(last_day))
-    
     return quotes[index]
-
-generate_quote()
+if __name__ == "__main__":
+    generate_quote()
